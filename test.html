@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Certificates</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="body" class="certificate__page js-certificate__page">
+  <div class="certificate__container">
+  	<header class="certificate__header">
+  		<p>
+			  <input type="text" class="certificate__input js-certificate__input" placeholder="№">
+			  <button type="button" id="ajax-bitton">Check</button> 
+			  <button type="button" class="js-button-switch-theme">Light / Dark</button>			
+  		</p>
+			<p><a class="certificate__link">En</a> / <a href="test-ru.html" class="certificate__link">Ru</a></p>
+		  <a href="#" class="certificate__link js-download-link" download="certificate.png">Download certificate (png)</a>
+  	</header>
+	  <main id="certificate" class="certificate__main">
+	    <h1 class="certificate__title">Certificate</h1>
+	    <p class="text text_align_center text_color_secondary">This certificate confirms that</p>
+	    <p class="text text_align_center text_color_primary text_size_big js-certificate__student-name">Sofia Radova</p>
+	    <p class="text text_align_center text_color_secondary">Successfully completed training on the course</p>
+	    <p class="text text_align_center text_color_primary text_size_middle js-certificate__course-name">Basics of illustration in Adobe Illustrator</p>
+	    <p class="text text_align_center text_color_secondary">Completed the final work and received skills <br>in accordance with the course program.</p>
+	  </main>
+  </div>
+  <script src="jquery-3.4.1.min.js"></script>	
+  <script src="html2canvas.min.js"></script>
+  <script>
+		function generateCanvas() {
+      html2canvas(document.getElementById('certificate')).then(function(canvas) {
+      	$('.js-download-link').attr('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+	    });
+		}
+
+    $('#ajax-bitton').on('click', function() {
+    	var id = $(".js-certificate__input").val();
+	    $.ajax({
+	      url: 'https://script.google.com/macros/s/AKfycbwfhKQSw4SnXmbJW2kF8lcWO-JDuQRdhTogGQysQkA8TJuU9Csf/exec?id=' + id,
+	      type: 'GET',
+	      dataType: 'json',
+	      success: function(data) {
+
+	        $('.js-certificate__student-name').text(data.result[1]);
+	        $('.js-certificate__course-name').text(data.result[3]);
+
+          generateCanvas();
+	      }
+	    });
+    });
+
+    $('.js-button-switch-theme').on('click', function() {
+      $('.js-certificate__page').toggleClass('certificate__page_theme_dark');
+      generateCanvas();
+    });
+  </script>
+</body>
+</html>
