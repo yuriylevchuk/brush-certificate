@@ -30,14 +30,17 @@
 	font-family: AvenirNextCyr, sans-serif;
 	font-size: 14px;
 	line-height: 1;
-	overflow: hidden;
+	/* overflow: hidden;
 	touch-action: none;
-	height: 100vh;
+	height: 100vh; */
+	background-color: #008184;
+	color: #fff;
 }
 
 .certificate__container {
+	max-width: 1106px;
 	margin: 0 auto;
-	padding: 0 30px;
+	padding: 0 10px;
 }
 
 .certificate__header {
@@ -45,7 +48,8 @@
 	justify-content: space-between;
 	align-items: center;
 	box-sizing: border-box;
-	height: 6vh;	
+	margin-bottom: 74px;
+	/* height: 6vh;	 */
 }
 
 .certificate__header p {
@@ -61,9 +65,9 @@
 }
 
 .certificate__wrapper {
-	height: 94vh;
-	/*border: 1px solid #1e1e1e;*/
-	overflow: auto;
+	/* height: 94vh; */
+	border: 3px solid #fff;
+	/* overflow: auto; */
 }
 
 .certificate__wrapper img {
@@ -73,6 +77,8 @@
 }
 
 .certificate__main {
+	position: absolute;
+	top: -5000px;
 	box-sizing: border-box;	
 	font-weight: bold;
 	background-color: #008184;
@@ -204,39 +210,41 @@
 }
 
 /* dark theme */
-.certificate__main_theme_dark {
+.certificate__page_theme_dark,
+.certificate__page_theme_dark .certificate__main {
 	background-color: #1e1e1e;
 }
 
-.certificate__main_theme_dark .text_color_secondary {
+.certificate__page_theme_dark .text_color_secondary {
 	color: #e74769;
 }
 
 /* light theme */
-.certificate__main_theme_light {
+.certificate__page_theme_light,
+.certificate__page_theme_light .certificate__main {
 	background-color: #fff;
 	color: #000;
 }
 
-.certificate__main_theme_light .text_color_primary {
+.certificate__page_theme_light .text_color_primary {
 	color: #a33b42;
 }
 
-.certificate__main_theme_light .text_color_secondary {
+.certificate__page_theme_light .text_color_secondary {
 	color: rgba(0, 0, 0, 0.5);
 }
 
-.certificate__main_theme_light .certificate__title::before,
-.certificate__main_theme_light .certificate__title::after {
+.certificate__page_theme_light .certificate__title::before,
+.certificate__page_theme_light .certificate__title::after {
 	background-color: #000;
 }
 
-.certificate__main_theme_light .certificate__group {
+.certificate__page_theme_light .certificate__group {
 	background-image: url("data:image/svg+xml,%3Csvg width='237' height='305' viewBox='0 0 237 305' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='118.453' cy='118.429' r='112.19' stroke='black' stroke-width='11.8095'/%3E%3Cpath d='M53.5 212.905V295.571L118.452 266.048L183.405 295.571V212.905' stroke='black' stroke-width='11.8095'/%3E%3Cpath d='M118.453 60.9136L135.718 95.8958L137.092 98.6796L140.164 99.126L178.769 104.736L150.834 131.965L148.611 134.132L149.136 137.192L155.731 175.641L121.201 157.488L118.453 156.043L115.706 157.488L81.1761 175.641L87.7706 137.192L88.2954 134.132L86.0725 131.965L58.1375 104.736L96.7426 99.126L99.8147 98.6796L101.189 95.8958L118.453 60.9136Z' stroke='black' stroke-width='11.8095'/%3E%3C/svg%3E");
 }
 
-.certificate__main_theme_light .certificate__domain::before,
-.certificate__main_theme_light .certificate__domain::after {
+.certificate__page_theme_light .certificate__domain::before,
+.certificate__page_theme_light .certificate__domain::after {
 	background-color: #000;
 }
 
