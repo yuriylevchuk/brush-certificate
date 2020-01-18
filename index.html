@@ -44,17 +44,17 @@
 		<p class="text text_size_small text_align_center">Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru</p>
 	</main>
   <script src="jquery-3.4.1.min.js"></script>	
-	<script src="html2canvas.min.js"></script>
+	<script src="html2canvas.js"></script>
   <script>
 		window.STATE = {
-			currentId: 1,
+			currentId: 1, 
 			currentTheme: "dark", 
 		};
 
 		function generateCanvas() {
-      html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, }).then(function(canvas) {
+      html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, useCORS: false, }).then(function(canvas) {
 				$('.js-download-link').attr('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
-				$('#output-image').attr('src',canvas.toDataURL())
+				$('#output-image').attr('src', canvas.toDataURL())
 			});
 		}
 
