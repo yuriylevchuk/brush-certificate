@@ -30,9 +30,6 @@
 	font-family: AvenirNextCyr, sans-serif;
 	font-size: 14px;
 	line-height: 1;
-	/* overflow: hidden;
-	touch-action: none;
-	height: 100vh; */
 	background-color: #008184;
 	color: #fff;
 }
@@ -49,7 +46,6 @@
 	align-items: center;
 	box-sizing: border-box;
 	margin-bottom: 74px;
-	/* height: 6vh;	 */
 }
 
 .certificate__header p {
@@ -65,9 +61,7 @@
 }
 
 .certificate__wrapper {
-	/* height: 94vh; */
 	border: 3px solid #fff;
-	/* overflow: auto; */
 }
 
 .certificate__wrapper img {

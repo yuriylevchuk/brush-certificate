@@ -12,8 +12,9 @@
   <div class="certificate__container">
   	<header class="certificate__header">
   		<p>
-			  <input type="text" class="certificate__input js-certificate__input" placeholder="№">
-			  <button type="button" id="ajax-bitton">Проверить</button> 
+				<input type="text" id="number-input" class="certificate__input js-certificate__input" placeholder="№">
+				<input type="text" id="name-input" class="certificate__input js-certificate__input" placeholder="ФИО">
+			  <button type="button" id="check-button" disabled>Проверить</button> 
 			  <button type="button" class="js-button-switch-theme">Светлая / Тёмная</button>			
   		</p>
 			<p><a href="index-en.html" class="certificate__link">En</a> / <a class="certificate__link">Рус</a></p>
@@ -25,13 +26,13 @@
 		</div>
 	</div>	
 	<main id="certificate" class="certificate__main certificate__main_format_A4">
-		<h1 class="text text_font_marvin certificate__title">Сертификат</h1>
+		<h1 class="text text_font_marvin certificate__title js-lang-switched" data-text-ru="Сертификат" data-text-en="Certificate">Сертификат</h1>
 		<p class="text text_color_primary certificate__number js-certificate__number">B01100013</p>
-		<p class="text text_align_center text_color_secondary">Настоящий сертификат подтверждает, что</p>
+		<p class="text text_align_center text_color_secondary js-lang-switched">Настоящий сертификат подтверждает, что</p>
 		<p class="text text_align_center text_color_primary text_font_marvin text_size_big js-certificate__student-name">Спирин Константин Александрович</p>
-		<p class="text text_align_center text_color_secondary">успешно завершил(а) обучение на курсе</p>
+		<p class="text text_align_center text_color_secondary js-lang-switched">успешно завершил(а) обучение на курсе</p>
 		<p class="text text_align_center text_color_primary text_font_marvin text_size_middle js-certificate__course-name">Иллюстратор.ядро</p>
-		<p class="text text_align_center text_color_secondary">выполнил(а) итоговую работу и получил(а) навыки <br>в соответствии с программой курса.</p>
+		<p class="text text_align_center text_color_secondary js-lang-switched">выполнил(а) итоговую работу и получил(а) навыки <br>в соответствии с программой курса.</p>
 		<div class="certificate__group">
 			<div>
 				<p class="text text_no-margin text_weight_bold">Теория: <span class="text_color_primary"><span class="js-certificate__theory-hours">12</span> часов.</span></p>
@@ -43,44 +44,77 @@
 		<p class="text text_align_center certificate__domain">brush.guru</p>
 		<p class="text text_size_small text_align_center">Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru</p>
 	</main>
-  <script src="jquery-3.4.1.min.js"></script>	
+	<script src="jquery-3.4.1.min.js"></script>	
+	<script src="jquery-ui.min.js"></script>	
 	<script src="html2canvas.min.js"></script>
   <script>
 		window.STATE = {
-			currentId: 1, 
-			currentTheme: "dark", 
+			currentThemeClass: 'certificate__page_theme_dark', 
 		};
+
+		$( document ).ready(function() {
+			// FIXED ARRAY INDICES
+			var I_CERT_NUM = 0,
+					I_NAME_RU = 1,
+					I_NAME_EN = 2,
+					I_COURSE_RU = 3,
+					I_COURSE_EN = 4,
+					I_THEORY_H = 5,
+					I_PRAC_H = 6,
+					I_DATE = 7,
+					I_THEME = 8;
 
 		function generateCanvas() {
       html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, useCORS: false, }).then(function(canvas) {
-				$('.js-download-link').attr('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+				$('.js-download-link').attr('href', canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'));
 				$('#output-image').attr('src', canvas.toDataURL())
 			});
 		}
 
-    $('#ajax-bitton').on('click', function() {
+			var studentNames = [];
+			var certificateNumbers = [];
+			// TODO 
+			// 3. при нажатии кнопки проверить искать сначала по номеру сертификата (если оно заполнено)
+			// 4. затем искать по ФИО (фио обязательно должно быть заполнено)
+			// 5. если найдено возвращать индекс и выводить текст по индексу / менять классы 
+
 			$.ajax({
 				url: 'https://script.google.com/macros/s/AKfycbwfhKQSw4SnXmbJW2kF8lcWO-JDuQRdhTogGQysQkA8TJuU9Csf/exec',
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) {
-						console.log(data.result);
-//						$('.js-certificate__number').text(data.result[0]);
-//						$('.js-certificate__student-name').html(data.result[1]);
-//						$('.js-certificate__course-name').text(data.result[3]);
-//						$('.js-certificate__theory-hours').text(data.result[5]);
-//						$('.js-certificate__practice-hours').text(data.result[6]);
-//						$('.js-certificate__date').text(data.result[7]);
-//						generateCanvas();
+					console.log(data.result);
+					for (var i = 0; i < data.result.length; i++) {
+						studentNames.push(data.result[i][I_NAME_RU]);
+						certificateNumbers.push(data.result[i][I_CERT_NUM]);
+					}
+
+					$('#name-input').autocomplete({
+						source: studentNames
+					});
+
+					$('#number-input').autocomplete({
+						source: certificateNumbers
+					});
+
+					$('#check-button').removeAttr('disabled');
+
+					$('#check-button').on('click', function() {
+						var currentIndex = 1;
+						$('.js-certificate__number').text(data.result[currentIndex][0]);
+						$('.js-certificate__student-name').html(data.result[currentIndex][1]);
+						$('.js-certificate__course-name').text(data.result[currentIndex][3]);
+						$('.js-certificate__theory-hours').text(data.result[currentIndex][5]);
+						$('.js-certificate__practice-hours').text(data.result[currentIndex][6]);
+						$('.js-certificate__date').text(data.result[currentIndex][7]);
+
+						$('.js-certificate__page').removeClass(window.STATE.currentThemeClass);
+						generateCanvas();
+					});
 				}
 			});
 
-    });
-
-    $('.js-button-switch-theme').on('click', function() {
-      $('.js-certificate__page').toggleClass('certificate__page_theme_dark');
-      generateCanvas();
-    });
+		});
   </script>
 </body>
 </html>
