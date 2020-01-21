@@ -21,14 +21,14 @@
 				<input type="text" id="number-input" class="certificate__input js-certificate__input" placeholder="B00000000">
 			</fieldset>
 			<fieldset class="certificate__fieldset certificate__fieldset_type_lang">
-				<label class="certificate__label">Rus <input type="radio" class="certificate__radiobutton" name="certificate-lang" checked></label>
+				<label class="certificate__label">Rus <input type="radio" class="certificate__radiobutton" name="certificate-lang" value="ru" checked></label>
 				<hr>
-				<label class="certificate__label">Eng <input type="radio" class="certificate__radiobutton" name="certificate-lang"></label>
+				<label class="certificate__label">Eng <input type="radio" class="certificate__radiobutton" name="certificate-lang" value="en"></label>
 			</fieldset>
 			<fieldset class="certificate__fieldset certificate__fieldset_type_format">
-				<label class="certificate__label">A4 <input type="radio" class="certificate__radiobutton" name="certificate-format" checked></label>
+				<label class="certificate__label">A4 <input type="radio" class="certificate__radiobutton" name="certificate-format" value="a4" checked></label>
 				<hr>
-				<label class="certificate__label">A5 <input type="radio" class="certificate__radiobutton" name="certificate-format"></label>
+				<label class="certificate__label">A5 <input type="radio" class="certificate__radiobutton" name="certificate-format" value="a5"></label>
 			</fieldset>
 			<div class="certificate__button-group">
 				<div>
@@ -43,29 +43,43 @@
 		</div>
 	</div>	
 	<main id="certificate" class="certificate__main certificate__main_format_A4">
-		<h1 class="text text_font_marvin certificate__title js-lang-switched" data-text-ru="Сертификат" data-text-en="Certificate">Сертификат</h1>
+		<h1 class="text text_font_marvin certificate__title js-lang-switched" 
+				data-text-ru="Сертификат" 
+				data-text-en="Certificate">Сертификат</h1>
 		<p class="text text_color_primary certificate__number js-certificate__number">B01100013</p>
-		<p class="text text_align_center text_color_secondary js-lang-switched">Настоящий сертификат подтверждает, что</p>
+		<p class="text text_align_center text_color_secondary js-lang-switched" 
+			 data-text-ru="Настоящий сертификат подтверждает, что"
+			 data-text-en="This certificate confirms that">Настоящий сертификат подтверждает, что</p>
 		<p class="text text_align_center text_color_primary text_font_marvin text_size_big js-certificate__student-name">Спирин Константин Александрович</p>
-		<p class="text text_align_center text_color_secondary js-lang-switched">успешно завершил(а) обучение на курсе</p>
+		<p class="text text_align_center text_color_secondary js-lang-switched" 
+			 data-text-ru="успешно завершил(а) обучение на курсе"
+			 data-text-en="Successfully completed training on the course">успешно завершил(а) обучение на курсе</p>
 		<p class="text text_align_center text_color_primary text_font_marvin text_size_middle js-certificate__course-name">Иллюстратор.ядро</p>
-		<p class="text text_align_center text_color_secondary certificate__caption_3 js-lang-switched">выполнил(а) итоговую работу и получил(а) навыки в&nbsp;соответствии с программой курса.</p>
+		<p class="text text_align_center text_color_secondary certificate__caption_3 js-lang-switched" 
+			 data-text-ru="выполнил(а) итоговую работу и получил(а) навыки в&nbsp;соответствии с программой курса."
+			 data-text-en="Completed the final work and received skills in&nbsp;accordance with the course program.">выполнил(а) итоговую работу и получил(а) навыки в&nbsp;соответствии с программой курса.</p>
 		<div class="certificate__group">
 			<div>
-				<p class="text text_no-margin text_weight_bold">Теория: <span class="text_color_primary"><span class="js-certificate__theory-hours">12</span> часов.</span></p>
-				<p class="text text_weight_bold">Практика: <span class="text_color_primary"><span class="js-certificate__practice-hours">40</span> часов.</span></p>
-				<p class="text text_no-margin text_weight_bold">Дата выдачи: <span class="text_color_primary js-certificate__date">06/01/20</span></p>
+				<p class="text text_no-margin text_weight_bold"><span class="js-lang-switched" data-text-ru="Теория" data-text-en="Theory">Теория</span>: <span class="text_color_primary"><span class="js-certificate__theory-hours">12</span> <span class="js-lang-switched" data-text-ru="часов" data-text-en="hours">часов</span>.</span></p>
+				<p class="text text_weight_bold"><span class="js-lang-switched" data-text-ru="Практика" data-text-en="Practice">Практика</span>: <span class="text_color_primary"><span class="js-certificate__practice-hours">40</span> <span class="js-lang-switched" data-text-ru="часов" data-text-en="hours">часов</span>.</span></p>
+				<p class="text text_no-margin text_weight_bold"><span class="js-lang-switched" data-text-ru="Дата выдачи" data-text-en="Date of issue">Дата выдачи</span>: <span class="text_color_primary js-certificate__date">06/01/20</span></p>
 			</div>
-			<p class="text certificate__director">Директор: Спирин К. А.</p>
+			<p class="text certificate__director js-lang-switched" data-text-ru="Директор: Спирин К. А." data-text-en="Director: Spirin K.A.">Директор: Спирин К. А.</p>
 		</div>
 		<p class="text text_align_center certificate__domain">brush.guru</p>
-		<p class="text text_size_small text_align_center">Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru</p>
+		<p class="text text_size_small text_align_center js-lang-switched" 
+			 data-text-ru="Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru"
+			 data-text-en="The authenticity of this certificate is guaranteed by a unique registration number, which can be verified by sending a request by mail: info@brush.guru">
+			 Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru
+		</p>
 	</main>
 	<script src="jquery-3.4.1.min.js"></script>	
 	<script src="jquery-ui.min.js"></script>	
 	<script src="html2canvas.min.js"></script>
   <script>
 		window.STATE = {
+			currentLanguage: 'ru',
+			currentFormat: 'a4',
 			currentThemeClass: 'certificate__page_theme_dark', 
 		};
 
@@ -91,6 +105,18 @@
 					$('#output-image').attr('src', canvas.toDataURL());
 				});
 			}
+
+			$('.certificate__radiobutton[name="certificate-lang"]').on('change', function() {
+				if ($(this).prop('checked')) {
+					window.STATE.currentLanguage = $(this).val();
+				}
+			});
+
+			$('.certificate__radiobutton[name="certificate-format"]').on('change', function() {
+				if ($(this).prop('checked')) {
+					window.STATE.currentFormat = $(this).val();
+				}
+			});
 
 			var studentNames = [];
 			var certificateNumbers = [];
@@ -149,9 +175,18 @@
 						}
 
 						if (newIndex >= 0) {
+							$('.js-lang-switched').each(function(i, el) {
+								$(el).text($(el).data('text-' + window.STATE.currentLanguage));
+							});
+
 							$('.js-certificate__number').text(data.result[newIndex][I_CERT_NUM]);
-							$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_RU]);
-							$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_RU]);
+							if (window.STATE.currentLanguage == 'ru') {
+								$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_RU]);
+								$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_RU]);
+							} else {
+								$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_EN]);
+								$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_EN]);
+							}
 							$('.js-certificate__theory-hours').text(data.result[newIndex][I_THEORY_H]);
 							$('.js-certificate__practice-hours').text(data.result[newIndex][I_PRAC_H]);
 							$('.js-certificate__date').text(data.result[newIndex][I_DATE]);
