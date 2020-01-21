@@ -121,6 +121,8 @@
 .certificate__input {
 	display: block;
 	width: 100%;
+	appearance: none;
+	-webkit-appearance: none;
 	margin-top: 14px;
 	padding-top: 9px;
 	padding-bottom: 0;
