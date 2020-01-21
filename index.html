@@ -33,7 +33,7 @@
 			<div class="certificate__button-group">
 				<div>
 					<button type="button" id="check-button" class="certificate__button" disabled>Проверить</button>
-					<a type="button" class="certificate__link js-download-link" download="certificate.png">Скачать (.png)</a>
+					<a type="button" class="certificate__link js-download-link" download="certificate.jpg">Скачать (.jpg)</a>
 				</div>
 			</div>
 		</header>
@@ -87,7 +87,7 @@
 
 			function generateCanvas() {
 				html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, useCORS: false, }).then(function(canvas) {
-					$('.js-download-link').attr('href', canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'));
+					$('.js-download-link').attr('href', canvas.toDataURL('image/jpeg', 1.0).replace('image/jpeg', 'image/octet-stream'));
 					$('#output-image').attr('src', canvas.toDataURL());
 				});
 			}
