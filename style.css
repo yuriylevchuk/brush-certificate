@@ -23,13 +23,18 @@
   font-style: normal;
 }
 
+/* ui-autocomplete */
+.ui-menu {
+	background-color: inherit;
+}
+
 /* page styles */
 .certificate__page {
   margin: 0;
   padding: 0;
 	font-family: AvenirNextCyr, sans-serif;
-	font-size: 14px;
-	line-height: 1;
+	font-size: 16px;
+	line-height: 20px;
 	background-color: #008184;
 	color: #fff;
 }
@@ -44,20 +49,156 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 	box-sizing: border-box;
-	margin-bottom: 74px;
+	max-width: 888px;
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 35px;
 }
 
 .certificate__header p {
 	margin: 0;
 }
 
+.certificate__link,
+.certificate__button {	
+	display: block;
+	min-width: 140px;
+	box-sizing: border-box;
+	border-radius: 16px;
+	padding: 9px 5px;
+	font-family: inherit;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: center;
+	outline: none;
+}
+
 .certificate__link {
-	color: inherit;
+	text-decoration: none;
+	background-color: #eee;
+	color: #666;
+	cursor: default;
+	user-select: none;
+}
+
+.certificate__link[href] {
+	user-select: auto;
+	background-color: #ffd420;
+	color: #000;
+	cursor: pointer;
+}
+
+.certificate__link[href]:hover,
+.certificate__link[href]:focus {
+	background-color: #ffe166;
+}
+
+.certificate__button {
+	-webkit-appearance: none;
+	background-color: #ffd420;
+	color: #000;
+	border: none;
+
+}
+
+.certificate__button:hover,
+.certificate__button:focus {
+	background-color: #ffe166;
+}
+
+.certificate__button[disabled] {
+	background-color: #eee;
+	color: #666;
+}
+
+.certificate__button:first-child {
+	margin-bottom: 15px;
 }
 
 .certificate__input {
-	width: 50px;
+	display: block;
+	width: 100%;
+	margin-top: 14px;
+	padding-top: 9px;
+	padding-bottom: 0;
+	border-top: 3px solid;
+	border-right: 0;
+	border-bottom: 0;
+	border-left: 0;
+	background-color: transparent;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	outline: none;
+}
+
+.certificate__input::placeholder {
+	color: #bbb;
+}
+
+.certificate__fieldset {
+	margin: 0 10px 25px 0;
+	padding: 0;
+	border: 0;
+}
+
+.certificate__fieldset hr {
+	margin-top: 14px;
+	margin-bottom: 9px;
+	height: 0;
+	color: inherit;
+	border-top: 3px solid;
+	border-right: 0;
+	border-bottom: 0;
+	border-left: 0;
+}
+
+.certificate__label {
+	flex: 0 0 56px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-transform: uppercase;
+}
+
+.certificate__radiobutton {
+	margin: 0;
+	appearance: none;
+	-webkit-appearance: none;
+	background: none;
+	border: none;
+	outline: none;
+}
+
+.certificate__radiobutton::before {
+	display: block;
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+}
+
+.certificate__radiobutton:checked::before {
+	background-color: #fff;
+}
+
+.certificate__fieldset_type_name {
+	flex: 0 1 300px;
+}
+
+.certificate__fieldset_type_number {
+	flex: 0 1 160px;
+}
+
+.certificate__fieldset_type_lang {
+	flex: 0 0 56px;
+}
+
+.certificate__fieldset_type_format {
+	flex: 0 0 40px;
 }
 
 .certificate__wrapper {
@@ -68,6 +209,11 @@
 	display: block;
 	width: 100%;
 	height: auto;
+}
+
+.certificate__button-group {
+	display: flex;
+	margin-bottom: 25px;
 }
 
 .certificate__main {
@@ -176,7 +322,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	background: url("data:image/svg+xml,%3Csvg width='237' height='305' viewBox='0 0 237 305' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='118.453' cy='118.429' r='112.19' stroke='white' stroke-width='11.8095'/%3E%3Cpath d='M53.5 212.905V295.571L118.452 266.048L183.405 295.571V212.905' stroke='white' stroke-width='11.8095'/%3E%3Cpath d='M118.453 60.9136L135.718 95.8958L137.092 98.6796L140.164 99.126L178.769 104.736L150.834 131.965L148.611 134.132L149.136 137.192L155.731 175.641L121.201 157.488L118.453 156.043L115.706 157.488L81.1761 175.641L87.7706 137.192L88.2954 134.132L86.0725 131.965L58.1375 104.736L96.7426 99.126L99.8147 98.6796L101.189 95.8958L118.453 60.9136Z' stroke='white' stroke-width='11.8095'/%3E%3C/svg%3E") no-repeat top center;
+	background: url(img/icon-light.png) no-repeat top center;
 }
 
 .certificate__director {
@@ -214,10 +360,22 @@
 }
 
 /* light theme */
+.certificate__page_theme_light .certificate__wrapper {
+	border-color: #000;
+}
+
+.certificate__page_theme_light .certificate__radiobutton:checked::before {
+	background-color: #000;
+}
+
 .certificate__page_theme_light,
 .certificate__page_theme_light .certificate__main {
 	background-color: #fff;
 	color: #000;
+}
+
+.certificate__page_theme_light .certificate__main {
+	background-image: url(img/stamp-dark-ru.png);
 }
 
 .certificate__page_theme_light .text_color_primary {
@@ -234,7 +392,7 @@
 }
 
 .certificate__page_theme_light .certificate__group {
-	background-image: url("data:image/svg+xml,%3Csvg width='237' height='305' viewBox='0 0 237 305' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='118.453' cy='118.429' r='112.19' stroke='black' stroke-width='11.8095'/%3E%3Cpath d='M53.5 212.905V295.571L118.452 266.048L183.405 295.571V212.905' stroke='black' stroke-width='11.8095'/%3E%3Cpath d='M118.453 60.9136L135.718 95.8958L137.092 98.6796L140.164 99.126L178.769 104.736L150.834 131.965L148.611 134.132L149.136 137.192L155.731 175.641L121.201 157.488L118.453 156.043L115.706 157.488L81.1761 175.641L87.7706 137.192L88.2954 134.132L86.0725 131.965L58.1375 104.736L96.7426 99.126L99.8147 98.6796L101.189 95.8958L118.453 60.9136Z' stroke='black' stroke-width='11.8095'/%3E%3C/svg%3E");
+	background-image: url(img/icon-dark.png);
 }
 
 .certificate__page_theme_light .certificate__domain::before,
@@ -246,3 +404,46 @@
 
 
 /* format A5 */
+
+@media (max-width: 800px) {
+	.certificate__page {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.certificate__header  {
+		padding-bottom: 15px;
+	}
+
+	.certificate__link,
+	.certificate__button {	
+		min-width: 100px;
+		font-size: 9px;
+		line-height: 11px;
+	}
+
+	.certificate__button:first-child {
+		margin-bottom: 10px;
+	}
+
+	.certificate__radiobutton::before {
+		width: 6px;
+		height: 6px;
+	}
+
+	.certificate__fieldset_type_name {
+		flex: 0 1 220px;
+	}
+	
+	.certificate__fieldset_type_number {
+		flex: 0 1 120px;
+	}
+	
+	.certificate__fieldset_type_lang {
+		flex: 0 0 40px;
+	}
+	
+	.certificate__fieldset_type_format {
+		flex: 0 0 30px;
+	}
+}

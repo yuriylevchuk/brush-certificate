@@ -6,19 +6,36 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Сертификаты BRUSH.GURU</title>
+	<link rel="stylesheet" href="jquery-ui.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body id="body" class="certificate__page certificate__page_theme_dark js-certificate__page">
   <div class="certificate__container">
   	<header class="certificate__header">
-  		<p>
-				<input type="text" id="number-input" class="certificate__input js-certificate__input" placeholder="№">
-				<input type="text" id="name-input" class="certificate__input js-certificate__input" placeholder="ФИО">
-			  <button type="button" id="check-button" disabled>Проверить</button> 
-			  <button type="button" class="js-button-switch-theme">Светлая / Тёмная</button>			
-  		</p>
-			<p><a href="index-en.html" class="certificate__link">En</a> / <a class="certificate__link">Рус</a></p>
-		  <a href="#" class="certificate__link js-download-link" download="certificate.png">Скачать (.png)</a>
+			<fieldset class="certificate__fieldset certificate__fieldset_type_name">
+				<label for="name-input">ФИО (полностью)</label>
+				<input type="text" id="name-input" class="certificate__input js-certificate__input" placeholder="Спирин Константин Александрович">
+			</fieldset>
+			<fieldset class="certificate__fieldset certificate__fieldset_type_number">
+				<label for="number-input">Номер сертификата</label>
+				<input type="text" id="number-input" class="certificate__input js-certificate__input" placeholder="B00000000">
+			</fieldset>
+			<fieldset class="certificate__fieldset certificate__fieldset_type_lang">
+				<label class="certificate__label">Rus <input type="radio" class="certificate__radiobutton" name="certificate-lang" checked></label>
+				<hr>
+				<label class="certificate__label">Eng <input type="radio" class="certificate__radiobutton" name="certificate-lang"></label>
+			</fieldset>
+			<fieldset class="certificate__fieldset certificate__fieldset_type_format">
+				<label class="certificate__label">A4 <input type="radio" class="certificate__radiobutton" name="certificate-format" checked></label>
+				<hr>
+				<label class="certificate__label">A5 <input type="radio" class="certificate__radiobutton" name="certificate-format"></label>
+			</fieldset>
+			<div class="certificate__button-group">
+				<div>
+					<button type="button" id="check-button" class="certificate__button" disabled>Проверить</button>
+					<a type="button" class="certificate__link js-download-link" download="certificate.png">Скачать (.png)</a>
+				</div>
+			</div>
 		</header>
 	
 		<div class="certificate__wrapper">
@@ -64,19 +81,19 @@
 					I_DATE = 7,
 					I_THEME = 8;
 
-		function generateCanvas() {
-      html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, useCORS: false, }).then(function(canvas) {
-				$('.js-download-link').attr('href', canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'));
-				$('#output-image').attr('src', canvas.toDataURL())
-			});
-		}
+			// FIXED THEME VALUE
+			var THEME_DARK = 'dark',
+					THEME_LIGHT = 'light';		
+
+			function generateCanvas() {
+				html2canvas(document.getElementById('certificate'), { scale: 1, logging: true, allowTaint: true, useCORS: false, }).then(function(canvas) {
+					$('.js-download-link').attr('href', canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream'));
+					$('#output-image').attr('src', canvas.toDataURL());
+				});
+			}
 
 			var studentNames = [];
 			var certificateNumbers = [];
-			// TODO 
-			// 3. при нажатии кнопки проверить искать сначала по номеру сертификата (если оно заполнено)
-			// 4. затем искать по ФИО (фио обязательно должно быть заполнено)
-			// 5. если найдено возвращать индекс и выводить текст по индексу / менять классы 
 
 			$.ajax({
 				url: 'https://script.google.com/macros/s/AKfycbwfhKQSw4SnXmbJW2kF8lcWO-JDuQRdhTogGQysQkA8TJuU9Csf/exec',
@@ -90,30 +107,69 @@
 					}
 
 					$('#name-input').autocomplete({
-						source: studentNames
+						source: function(request, response) {
+							var results = $.ui.autocomplete.filter(studentNames, request.term);
+							response(results.slice(0, 5));
+						},
+						minLength: 3,
 					});
 
 					$('#number-input').autocomplete({
-						source: certificateNumbers
+						source: function(request, response) {
+							var results = $.ui.autocomplete.filter(certificateNumbers, request.term);
+							response(results.slice(0, 5));
+						},
+						minLength: 3,
 					});
 
 					$('#check-button').removeAttr('disabled');
 
 					$('#check-button').on('click', function() {
-						var currentIndex = 1;
-						$('.js-certificate__number').text(data.result[currentIndex][0]);
-						$('.js-certificate__student-name').html(data.result[currentIndex][1]);
-						$('.js-certificate__course-name').text(data.result[currentIndex][3]);
-						$('.js-certificate__theory-hours').text(data.result[currentIndex][5]);
-						$('.js-certificate__practice-hours').text(data.result[currentIndex][6]);
-						$('.js-certificate__date').text(data.result[currentIndex][7]);
+						var newIndex = -1;
+						var newStudentName = $('#name-input').val();
+						var newCertificateNumber = $('#number-input').val();
+						if (newStudentName) {
+							newIndex = studentNames.findIndex(function(el) {
+								if (el.indexOf(newStudentName) >= 0) {
+									return true;
+								}
+								return false;
+							});
+						}
 
-						$('.js-certificate__page').removeClass(window.STATE.currentThemeClass);
-						generateCanvas();
+						if (newIndex < 0) {
+							if (newCertificateNumber) {
+								newIndex = certificateNumbers.findIndex(function(el) {
+									if (el.indexOf(newCertificateNumber) >= 0) {
+										return true;
+									}
+									return false;
+								});
+							}							
+						}
+
+						if (newIndex >= 0) {
+							$('.js-certificate__number').text(data.result[newIndex][I_CERT_NUM]);
+							$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_RU]);
+							$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_RU]);
+							$('.js-certificate__theory-hours').text(data.result[newIndex][I_THEORY_H]);
+							$('.js-certificate__practice-hours').text(data.result[newIndex][I_PRAC_H]);
+							$('.js-certificate__date').text(data.result[newIndex][I_DATE]);
+
+							var newThemeClass = 'certificate__page_theme_' + data.result[newIndex][I_THEME];
+							if (!$('.js-certificate__page').hasClass(newThemeClass)) {
+								$('.js-certificate__page').removeClass(window.STATE.currentThemeClass);
+								window.STATE.currentThemeClass = '';
+								if (data.result[newIndex][I_THEME] == THEME_DARK || data.result[newIndex][I_THEME] == THEME_LIGHT) {
+									$('.js-certificate__page').addClass(newThemeClass);
+									window.STATE.currentThemeClass = newThemeClass;
+								}
+							}
+							generateCanvas();
+						}
 					});
 				}
 			});
-
 		});
   </script>
 </body>
