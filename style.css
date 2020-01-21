@@ -220,8 +220,8 @@
 }
 
 .certificate__main {
-	position: absolute;
-	top: -5000px;
+	/* position: absolute;
+	top: -5000px; */
 	box-sizing: border-box;	
 	font-weight: bold;
 	background-color: #008184;
@@ -310,6 +310,12 @@
 	line-height: 128px;
 }
 
+.certificate__caption_3 {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1650px;
+}
+
 .certificate__number {
 	margin-bottom: 1.6em;
 	text-align: center;
@@ -330,6 +336,7 @@
 
 .certificate__director {
 	margin-right: 270px;
+	max-width: 360px;
 	margin-bottom: 0;
 }
 
