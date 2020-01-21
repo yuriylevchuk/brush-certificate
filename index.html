@@ -183,9 +183,11 @@
 							if (window.STATE.currentLanguage == 'ru') {
 								$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_RU]);
 								$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_RU]);
+								$('.js-certificate__page').removeClass('certificate__page_lang_en');
 							} else {
 								$('.js-certificate__student-name').html(data.result[newIndex][I_NAME_EN]);
 								$('.js-certificate__course-name').text(data.result[newIndex][I_COURSE_EN]);
+								$('.js-certificate__page').addClass('certificate__page_lang_en');
 							}
 							$('.js-certificate__theory-hours').text(data.result[newIndex][I_THEORY_H]);
 							$('.js-certificate__practice-hours').text(data.result[newIndex][I_PRAC_H]);

@@ -359,6 +359,10 @@
 	background-color: #fff;
 }
 
+.certificate__page_lang_en .certificate__main {
+	background-image: url(img/stamp-light-en.png);
+}
+
 /* dark theme */
 .certificate__page_theme_dark,
 .certificate__page_theme_dark .certificate__main {
@@ -386,6 +390,10 @@
 
 .certificate__page_theme_light .certificate__main {
 	background-image: url(img/stamp-dark-ru.png);
+}
+
+.certificate__page_theme_light.certificate__page_lang_en .certificate__main {
+	background-image: url(img/stamp-dark-en.png);
 }
 
 .certificate__page_theme_light .text_color_primary {
