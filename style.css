@@ -220,8 +220,8 @@
 }
 
 .certificate__main {
-	/* position: absolute;
-	top: -5000px; */
+	position: absolute;
+	top: -5000px;
 	box-sizing: border-box;	
 	font-weight: bold;
 	background-color: #008184;
