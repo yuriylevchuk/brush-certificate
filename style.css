@@ -42,7 +42,7 @@
 .certificate__container {
 	max-width: 1106px;
 	margin: 0 auto;
-	padding: 0 10px;
+	padding: 0 20px;
 }
 
 .certificate__header {
@@ -495,7 +495,7 @@
 
 	.certificate__link,
 	.certificate__button {	
-		min-width: 100px;
+		min-width: 110px;
 	}
 
 	.certificate__button:first-child {
@@ -510,16 +510,32 @@
 	.certificate__fieldset_type_name {
 		flex: 0 1 220px;
 	}
-	
+
+}
+
+@media (max-width: 650px) {
+	.certificate__header {
+		max-width: 460px;
+	}
+
+	.certificate__fieldset {
+		margin-right: 0;
+	}
+
+	.certificate__fieldset_type_name,
 	.certificate__fieldset_type_number {
-		flex: 0 1 120px;
+		flex: 1 1 630px;
 	}
-	
-	.certificate__fieldset_type_lang {
-		flex: 0 0 40px;
+}
+
+@media (max-width: 460px) {
+	.certificate__header {
+		max-width: 288px;
 	}
-	
-	.certificate__fieldset_type_format {
-		flex: 0 0 30px;
+}
+
+@media (max-width: 350px) {
+	.certificate__container {
+		padding: 0 10px;
 	}
 }
