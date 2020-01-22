@@ -42,7 +42,7 @@
 			<img id="output-image" src="img/certificate.png" alt="">
 		</div>
 	</div>	
-	<main id="certificate" class="certificate__main certificate__main_format_A4">
+	<main id="certificate" class="certificate__main js-certificate__main">
 		<h1 class="text text_font_marvin certificate__title js-lang-switched" 
 				data-text-ru="Сертификат" 
 				data-text-en="Certificate">Сертификат</h1>
@@ -107,12 +107,14 @@
 			}
 
 			$('.certificate__radiobutton[name="certificate-lang"]').on('change', function() {
+				$('.js-download-link').removeAttr('href');
 				if ($(this).prop('checked')) {
 					window.STATE.currentLanguage = $(this).val();
 				}
 			});
 
 			$('.certificate__radiobutton[name="certificate-format"]').on('change', function() {
+				$('.js-download-link').removeAttr('href');
 				if ($(this).prop('checked')) {
 					window.STATE.currentFormat = $(this).val();
 				}
@@ -126,7 +128,6 @@
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) {
-					console.log(data.result);
 					for (var i = 0; i < data.result.length; i++) {
 						studentNames.push(data.result[i][I_NAME_RU]);
 						certificateNumbers.push(data.result[i][I_CERT_NUM]);
@@ -178,6 +179,12 @@
 							$('.js-lang-switched').each(function(i, el) {
 								$(el).text($(el).data('text-' + window.STATE.currentLanguage));
 							});
+
+							if (window.STATE.currentFormat == 'a5') {
+								$('.js-certificate__main').addClass('certificate__main_format_a5');
+							} else {
+								$('.js-certificate__main').removeClass('certificate__main_format_a5');
+							}
 
 							$('.js-certificate__number').text(data.result[newIndex][I_CERT_NUM]);
 							if (window.STATE.currentLanguage == 'ru') {
