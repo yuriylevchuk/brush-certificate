@@ -125,6 +125,7 @@
 	appearance: none;
 	-webkit-appearance: none;
 	margin-top: 14px;
+	padding-left: 0;
 	padding-top: 9px;
 	padding-bottom: 0;
 	border-top: 3px solid;
@@ -187,17 +188,12 @@
 	background: none;
 	border: none;
 	outline: none;
-}
-
-.certificate__radiobutton::before {
-	display: block;
-	content: "";
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
 }
 
-.certificate__radiobutton:checked::before {
+.certificate__radiobutton:checked {
 	background-color: #fff;
 }
 
@@ -387,7 +383,7 @@
 	border-color: #000;
 }
 
-.certificate__page_theme_light .certificate__radiobutton:checked::before {
+.certificate__page_theme_light .certificate__radiobutton:checked {
 	background-color: #000;
 }
 
@@ -515,7 +511,7 @@
 		margin-bottom: 10px;
 	}
 
-	.certificate__radiobutton::before {
+	.certificate__radiobutton {
 		width: 6px;
 		height: 6px;
 	}
