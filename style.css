@@ -171,8 +171,8 @@
 }
 
 .certificate__label {
+	width: 100%;
 	line-height: 1;
-	flex: 0 0 56px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
