@@ -138,8 +138,19 @@
 	outline: none;
 }
 
+.certificate__input::-moz-placeholder {
+	color: #bbb;
+	padding-left: 0;
+}
+
+.certificate__input::-webkit-input-placeholder {
+	color: #bbb;
+	padding-left: 0;
+}
+
 .certificate__input::placeholder {
 	color: #bbb;
+	padding-left: 0;
 }
 
 .certificate__fieldset {
@@ -160,6 +171,7 @@
 }
 
 .certificate__label {
+	line-height: 1;
 	flex: 0 0 56px;
 	display: flex;
 	align-items: center;
