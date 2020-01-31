@@ -1,24 +1,24 @@
 /* fonts */
 @font-face {
   font-family: "MarvinVisions";
-  src: url("fonts/MarvinBRUSH.woff") format("woff"),
-    url("fonts/MarvinBRUSH.woff2") format("woff2");
+  src: url("../fonts/MarvinBRUSH.woff") format("woff"),
+    url("../fonts/MarvinBRUSH.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AvenirNextCyr";
-  src: url("fonts/AvenirNextCyr-Medium.woff") format("woff"),
-    url("fonts/AvenirNextCyr-Medium.woff2") format("woff2");
+  src: url("../fonts/AvenirNextCyr-Medium.woff") format("woff"),
+    url("../fonts/AvenirNextCyr-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AvenirNextCyr";
-  src: url("fonts/AvenirNextCyr-Bold.woff") format("woff"),
-    url("fonts/AvenirNextCyr-Bold.woff2") format("woff2");
+  src: url("../fonts/AvenirNextCyr-Bold.woff") format("woff"),
+    url("../fonts/AvenirNextCyr-Bold.woff2") format("woff2");
   font-weight: bold;
   font-style: normal;
 }
@@ -234,7 +234,7 @@
 	box-sizing: border-box;	
 	font-weight: bold;
 	background-color: #008184;
-	background-image: url(img/stamp-light-ru.png);
+	background-image: url(../img/stamp-light-ru.png);
 	background-repeat: no-repeat;
 	background-position: 2550px 1458px;
 	color: #fff;	
@@ -336,7 +336,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	background: url(img/icon-light.png) no-repeat top center;
+	background: url(../img/icon-light.png) no-repeat top center;
 }
 
 .certificate__director {
@@ -365,7 +365,7 @@
 }
 
 .certificate__page_lang_en .certificate__main {
-	background-image: url(img/stamp-light-en.png);
+	background-image: url(../img/stamp-light-en.png);
 }
 
 /* dark theme */
@@ -394,11 +394,11 @@
 }
 
 .certificate__page_theme_light .certificate__main {
-	background-image: url(img/stamp-dark-ru.png);
+	background-image: url(../img/stamp-dark-ru.png);
 }
 
 .certificate__page_theme_light.certificate__page_lang_en .certificate__main {
-	background-image: url(img/stamp-dark-en.png);
+	background-image: url(../img/stamp-dark-en.png);
 }
 
 .certificate__page_theme_light .text_color_primary {
@@ -415,7 +415,7 @@
 }
 
 .certificate__page_theme_light .certificate__group {
-	background-image: url(img/icon-dark.png);
+	background-image: url(../img/icon-dark.png);
 }
 
 .certificate__page_theme_light .certificate__domain::before,

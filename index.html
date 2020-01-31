@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Сертификаты BRUSH.GURU</title>
-	<link rel="stylesheet" href="jquery-ui.min.css">
-  <link rel="stylesheet" href="style.min.css">
+	<link rel="stylesheet" href="static/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body id="body" class="certificate__page certificate__page_theme_dark js-certificate__page">
   <div class="certificate__container">
@@ -39,7 +39,7 @@
 		</header>
 	
 		<div class="certificate__wrapper">
-			<img id="output-image" src="img/certificate.png" alt="">
+			<img id="output-image" src="static/img/certificate.png" alt="">
 		</div>
 	</div>	
 	<main id="certificate" class="certificate__main js-certificate__main">
@@ -73,9 +73,9 @@
 			 Подлинность данного сертификата гарантирует уникальный регистрационный номер, проверить который можно направив запрос на почту: info@brush.guru
 		</p>
 	</main>
-	<script src="jquery-3.4.1.min.js"></script>	
-	<script src="jquery-ui.min.js"></script>	
-	<script src="html2canvas.min.js"></script>
+	<script src="static/js/jquery-3.4.1.min.js"></script>	
+	<script src="static/js/jquery-ui.min.js"></script>	
+	<script src="static/js/html2canvas.min.js"></script>
   <script>
 		window.STATE = {
 			currentLanguage: 'ru',
@@ -122,9 +122,8 @@
 
 			var studentNames = [];
 			var certificateNumbers = [];
-
 			$.ajax({
-				url: 'https://script.google.com/macros/s/AKfycbwfhKQSw4SnXmbJW2kF8lcWO-JDuQRdhTogGQysQkA8TJuU9Csf/exec',
+				url: 'https://script.google.com/macros/s/AKfycbxIGY-rBhfOpSjfhjfzhozRyJoyuagq-yskuLwd/exec',
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) {
@@ -153,8 +152,8 @@
 
 					$('#check-button').on('click', function() {
 						var newIndex = -1;
-						var newStudentName = $('#name-input').val();
-						var newCertificateNumber = $('#number-input').val();
+						var newStudentName = $('#name-input').val().trim();
+						var newCertificateNumber = $('#number-input').val().trim();
 						if (newStudentName) {
 							newIndex = studentNames.findIndex(function(el) {
 								if (el.indexOf(newStudentName) >= 0) {
@@ -176,6 +175,9 @@
 						}
 
 						if (newIndex >= 0) {
+							$('#name-input').val(data.result[newIndex][I_NAME_RU]);
+							$('#number-input').val(data.result[newIndex][I_CERT_NUM]);
+							
 							$('.js-lang-switched').each(function(i, el) {
 								$(el).text($(el).data('text-' + window.STATE.currentLanguage));
 							});
