@@ -251,6 +251,7 @@
 	font-size: 59px;
 	line-height: 72px;
 	font-weight: 500;
+	word-break: break-word;
 }
 
 .text_no-margin {
@@ -268,6 +269,9 @@
 }
 
 .text_size_big {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	min-height: 505px;
 	margin-bottom: 0.4em;
 	font-size: 212px;
